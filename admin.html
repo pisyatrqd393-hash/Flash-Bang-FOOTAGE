@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#080808">
+    <meta name="description" content="Админ-панель FLASH BANG.">
+    <title>FLASH BANG — админ-панель</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/admin.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="На главную FLASH BANG">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M13.5 1.5 4 13h6l-.5 9.5L20 10h-6l-.5-8.5Z" fill="currentColor"/>
+        </svg>
+        <span>FLASH BANG</span>
+      </a>
+      <span class="header-note">АДМИН-ПАНЕЛЬ</span>
+    </header>
+
+    <main class="page">
+      <section class="login-card" id="login-view" hidden>
+        <p class="eyebrow">ЗАКРЫТЫЙ ДОСТУП</p>
+        <h1>Вход</h1>
+        <p class="muted">Админ-панель FLASH BANG</p>
+        <form id="login-form">
+          <label for="password">Пароль администратора</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required autofocus>
+          <button class="button button-primary" type="submit">Войти <span aria-hidden="true">↗</span></button>
+          <p class="form-message" id="login-message" role="status"></p>
+        </form>
+        <p class="hint">После входа этот браузер запомнит тебя на год. Админ-панель доступна только на этом компьютере.</p>
+      </section>
+
+      <section id="admin-view" hidden>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">УПРАВЛЕНИЕ КОНТЕНТОМ</p>
+            <h1>Медиатека</h1>
+          </div>
+          <button class="button button-quiet" id="logout-button" type="button">Выйти</button>
+        </div>
+
+        <div class="admin-grid">
+          <section class="panel">
+            <h2>Загрузить фото или видео</h2>
+            <form id="upload-form">
+              <label for="media-file">Файл</label>
+              <input id="media-file" name="file" type="file" accept=".jpg,.jpeg,.png,.gif,.webp,.mp4,.mov,.webm" required>
+              <span class="field-hint">JPG, PNG, GIF, WEBP, MP4, MOV, WEBM · до 100 МБ</span>
+              <label for="upload-category">Категория</label>
+              <select id="upload-category" name="category_id" required>
+                <option value="">Сначала создай категорию</option>
+              </select>
+              <button class="button button-primary" id="upload-button" type="submit">Загрузить <span aria-hidden="true">↑</span></button>
+              <p class="form-message" id="upload-message" role="status"></p>
+            </form>
+          </section>
+
+          <section class="panel">
+            <h2>Категории</h2>
+            <form class="category-form" id="category-form">
+              <label class="visually-hidden" for="category-name">Название новой категории</label>
+              <input id="category-name" name="name" type="text" maxlength="40" placeholder="Название категории" required>
+              <button class="button button-primary" type="submit">Создать</button>
+            </form>
+            <p class="form-message" id="category-message" role="status"></p>
+            <ul class="category-list" id="category-list"></ul>
+          </section>
+        </div>
+
+        <section class="library">
+          <div class="library-heading">
+            <h2>Фото и видео</h2>
+            <span class="library-count" id="media-count">0 файлов</span>
+          </div>
+          <p class="form-message" id="library-message" role="status"></p>
+          <div class="media-grid" id="media-grid"></div>
+          <p class="empty-state" id="empty-state">Пока файлов нет — загрузи первый.</p>
+        </section>
+
+        <section class="panel policy-editor">
+          <h2>Политика конфиденциальности</h2>
+          <p class="field-hint">Этот текст виден всем посетителям сайта. Редактировать его может только администратор.</p>
+          <form id="policy-form">
+            <label for="policy-text">Текст политики</label>
+            <textarea id="policy-text" name="text" maxlength="20000" required></textarea>
+            <button class="button button-primary" type="submit">Сохранить политику</button>
+            <p class="form-message" id="policy-message" role="status"></p>
+          </form>
+          <a class="preview-link" href="/privacy" target="_blank" rel="noopener">Посмотреть страницу политики ↗</a>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
